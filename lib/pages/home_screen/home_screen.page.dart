@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:openweathermap_api_flutter/common/enums/forecast_length_enum.dart';
 
 import 'package:openweathermap_api_flutter/models/weather_info/open_weather/weather_info_model.dart';
 import 'package:openweathermap_api_flutter/models/weather_info/visual_crossing/forecast_info_model.dart';
@@ -26,7 +27,13 @@ class HomeScreenPage extends StatefulWidget {
 }
 
 class _HomeScreenPageState extends State<HomeScreenPage> {
-  bool showMaxDays = false;
+  late ForecastLength selectedForecastLength;
+
+  @override
+  void initState() {
+    selectedForecastLength = ForecastLength.half;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,12 +42,9 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
     final maxTemp = widget.forecastInfo.days[0].tempMax.toStringAsFixed(0);
     final humidity = widget.forecastInfo.days[0].humidity;
 
-    final daysToShow = showMaxDays ? widget.forecastInfo.days.length : 7;
-
-    const switchButtons = [
-      '7 days',
-      'Max days',
-    ];
+    final daysToShow = selectedForecastLength == ForecastLength.max
+        ? widget.forecastInfo.days.length
+        : 7;
 
     return GestureDetector(
       onTap: FocusScope.of(context).unfocus,
@@ -99,13 +103,14 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        for (var i = 0; i < switchButtons.length; i++)
+                        for (ForecastLength forecastLength
+                            in ForecastLength.values)
                           ForecastLengthSwitchItem(
-                            text: switchButtons[i],
-                            isActive: showMaxDays == (i == 1),
+                            text: forecastLength.name,
+                            isActive: forecastLength == selectedForecastLength,
                             onTap: () {
                               setState(() {
-                                showMaxDays = !showMaxDays;
+                                selectedForecastLength = forecastLength;
                               });
                             },
                           ),

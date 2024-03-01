@@ -1,0 +1,4 @@
+enum ForecastLength {
+  half,
+  max,
+}
