@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
-import 'package:openweathermap_api_flutter/common/widgets/empty_page.dart';
+import 'package:openweathermap_api_flutter/common/widgets/loader_page.dart';
 import 'package:openweathermap_api_flutter/common/widgets/loader.dart';
 import 'package:openweathermap_api_flutter/models/city/city_model.dart';
 import 'package:openweathermap_api_flutter/models/weather_info/open_weather/weather_info_model.dart';
@@ -21,7 +21,7 @@ class HomeScreenContainer extends StatelessWidget {
       converter: _ViewModel.create,
       builder: (context, vm) {
         return vm.weatherInfo == null || vm.forecastInfo == null
-            ? const EmptyPage()
+            ? const LoaderPage()
             : Loader(
                 child: HomeScreenPage(
                   weatherInfo: vm.weatherInfo!,

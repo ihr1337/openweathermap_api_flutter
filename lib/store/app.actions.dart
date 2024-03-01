@@ -46,6 +46,11 @@ class InitAppAction extends CallableThunkAction<AppState> {
     try {
       final apiService = Modular.get<DioAppApi>();
 
+      await Future.delayed(
+        const Duration(seconds: 3),
+        () => Modular.to.navigate('/home_screen'),
+      );
+
       await Geolocator.requestPermission();
 
       final Position position = await Geolocator.getCurrentPosition(
@@ -69,11 +74,6 @@ class InitAppAction extends CallableThunkAction<AppState> {
       store.dispatch(SetWeatherInfoAction(weatherInfo: weatherInfo));
 
       store.dispatch(SetForecastInfoAction(forecastInfo: forecastInfo));
-
-      await Future.delayed(
-        const Duration(seconds: 1),
-        () => Modular.to.navigate('/home_screen'),
-      );
     } on DioException catch (error) {
       throw Exception(error);
     } catch (error) {

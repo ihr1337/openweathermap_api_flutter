@@ -12,29 +12,30 @@ class Loader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, int>(
-        converter: (store) => store.state.loader,
-        builder: (context, loader) {
-          return Stack(
-            children: <Widget>[
-              if (child != null) child!,
-              loader > 0
-                  ? Container(
-                      decoration: const BoxDecoration(
-                        color: Colors.black38,
-                      ),
-                      child: const Center(
-                        child: SizedBox(
-                          width: 60,
-                          height: 60,
-                          child: CircularProgressIndicator(
-                            valueColor: AlwaysStoppedAnimation(Colors.green),
-                          ),
+      converter: (store) => store.state.loader,
+      builder: (context, loader) {
+        return Stack(
+          children: <Widget>[
+            if (child != null) child!,
+            loader > 0
+                ? Container(
+                    decoration: const BoxDecoration(
+                      color: Colors.black38,
+                    ),
+                    child: const Center(
+                      child: SizedBox(
+                        width: 60,
+                        height: 60,
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation(Colors.white),
                         ),
                       ),
-                    )
-                  : const SizedBox.shrink()
-            ],
-          );
-        });
+                    ),
+                  )
+                : const SizedBox.shrink()
+          ],
+        );
+      },
+    );
   }
 }
