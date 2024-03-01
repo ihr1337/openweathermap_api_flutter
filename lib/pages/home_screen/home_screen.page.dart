@@ -31,7 +31,7 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
 
   @override
   void initState() {
-    selectedForecastLength = ForecastLength.half;
+    selectedForecastLength = ForecastLength.seven;
     super.initState();
   }
 
@@ -106,7 +106,7 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
                         for (ForecastLength forecastLength
                             in ForecastLength.values)
                           ForecastLengthSwitchItem(
-                            text: forecastLength.name,
+                            text: forecastLength.buttonLabel,
                             isActive: forecastLength == selectedForecastLength,
                             onTap: () {
                               setState(() {
