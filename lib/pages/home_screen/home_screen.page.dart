@@ -49,6 +49,7 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
     return GestureDetector(
       onTap: FocusScope.of(context).unfocus,
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Stack(
           children: [
             Container(
