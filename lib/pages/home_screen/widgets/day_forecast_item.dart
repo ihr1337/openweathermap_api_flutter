@@ -20,6 +20,7 @@ class DayForecastItem extends StatelessWidget {
       width: 100,
       decoration: BoxDecoration(
         border: Border.all(color: Colors.white),
+        borderRadius: BorderRadius.circular(15),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

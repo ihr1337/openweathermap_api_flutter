@@ -124,8 +124,14 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
                         itemCount: daysToShow,
                         itemBuilder: (context, index) {
                           final forecast = widget.forecastInfo.days[index];
-                          return DayForecastItem(
-                            dayForecast: forecast,
+                          return Row(
+                            children: [
+                              DayForecastItem(
+                                dayForecast: forecast,
+                              ),
+                              if (index < daysToShow - 1)
+                                const SizedBox(width: 5),
+                            ],
                           );
                         },
                       ),
